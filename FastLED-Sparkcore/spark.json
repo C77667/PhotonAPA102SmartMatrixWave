@@ -1,0 +1,8 @@
+{
+  "name": "FastLEDSmartMatrix",
+  "author": "Daniel Garcia, Mark Kriegsman",
+  "license": "MIT",
+  "version": "3.1.5",
+  "description": "(Temporary!) FastLED with SmartMatrix compatibility - A packaging of FastLED 3.1 for sparkcore and photon",
+  "namespace": "NSFastLED"
+}
