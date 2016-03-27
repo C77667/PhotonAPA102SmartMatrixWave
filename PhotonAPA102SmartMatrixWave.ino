@@ -1,4 +1,6 @@
-#define SMARTMATRIX_ENABLED   0
+#define SMARTMATRIX_ENABLED  1
+
+#define BRIGHTNESS 10
 
 #include "application.h"
 
@@ -40,8 +42,7 @@ FASTLED_USING_NAMESPACE;
 
   const uint16_t NUM_LEDS = kMatrixWidth * kMatrixHeight;
 
-  CRGB leds_plus_safety_pixel[ NUM_LEDS + 1];
-  CRGB* leds( leds_plus_safety_pixel + 1);
+  CRGB leds[NUM_LEDS];
 #endif
 
 const uint8_t scale = 256 / kMatrixWidth;
@@ -83,16 +84,10 @@ const uint8_t scale = 256 / kMatrixWidth;
   void dimAll(byte value)
   {
     for (int i = 0; i < NUM_LEDS; i++) {
-      CRGB c = leds[i];
-      c.nscale8(value);
-      leds[i] = c;
+      leds[i].nscale8(value);
     }
   }
 #endif
-
-
-#define BRIGHTNESS 32
-
 
 void setup() {
 #if (SMARTMATRIX_ENABLED == 1)
@@ -128,7 +123,7 @@ void loop() {
 #if (SMARTMATRIX_ENABLED == 1)
       buffer[XY(x, y)] = CRGB(CHSV(x + hue, 255, 255));
 #else
-      leds[XY(x, y)] = CRGB(CHSV(x + hue, 255, 255));
+      leds[XY(x, y)] = CHSV(x + hue, 255, 255);
 #endif
     }
 
