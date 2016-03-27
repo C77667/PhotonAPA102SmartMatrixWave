@@ -98,6 +98,7 @@ void setup() {
 #if (SMARTMATRIX_ENABLED == 1)
   matrix.addLayer(&backgroundLayer);
   matrix.addLayer(&scrollingLayer);
+  matrix.setRefreshRate(60);
   matrix.begin();
   matrix.setBrightness(BRIGHTNESS);
   backgroundLayer.enableColorCorrection(false);
@@ -105,8 +106,8 @@ void setup() {
   FastLED.addLeds<CHIPSET, DATA_PIN, CLOCK_PIN, COLOR_ORDER, DATA_RATE_MHZ(1)>(leds, NUM_LEDS).setCorrection(TypicalSMD5050);
   FastLED.setBrightness( BRIGHTNESS );
 
-  //FastLED.setDither(BINARY_DITHER);
-  FastLED.setDither(DISABLE_DITHER);
+  //FastLED.setDither(DISABLE_DITHER);
+  FastLED.setDither(BINARY_DITHER);
 #endif
 }
 
